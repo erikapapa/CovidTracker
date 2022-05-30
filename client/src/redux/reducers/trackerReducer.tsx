@@ -1,4 +1,4 @@
-import { IAddPlace, ILoadPlaces, ILoadSocInteraction } from "../actions/actionInterfaces";
+import { ILoadPlaces, ILoadSocInteraction } from "../actions/actionInterfaces";
 import { StoreState, initialState } from "../store/store";
 import { Reducer } from "redux";
 import * as types from "../actions/actionTypes"

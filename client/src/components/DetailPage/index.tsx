@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Container, Form } from "react-bootstrap";
-import { getRequest } from "../../services/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { LoadPlaceAction } from "../../redux/actions/actionCreator";
-import { StoreState } from "../../redux/store/store";
+import { Form } from "react-bootstrap";
 import CustomTable from "./Table/customTable";
 import CustomButton from "../../shared/Form/Button/button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AddBtnModal from "../AddBtnModal/addBtnModal";
 
 
@@ -48,8 +44,6 @@ const DetailPage: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     setNewList(list);
   }, [list])
-
-  // console.log("sdffsdsdf", newList)
 
   return (
     <div className="mx-5 my-3">

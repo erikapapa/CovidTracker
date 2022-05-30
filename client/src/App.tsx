@@ -17,7 +17,6 @@ function App() {
   const socIntList_store = useSelector<StoreState>((state) => state.socInteractionList) as any[];
 
   const getAllData = () => {
-    console.log("hehe")
     getRequest("social-interactions").then((result) => {
       dispatch(LoadSocInteractionAction(result))
     })

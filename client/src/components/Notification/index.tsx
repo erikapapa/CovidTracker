@@ -22,12 +22,17 @@ const Alerts: React.FC<Props> = (props: Props) => {
     severity: ""
   };
 
-  const todayDate = new Date().setHours(0, 0, 0, 0);
+  const todayDate = new Date(new Date().setHours(0, 0, 0, 0));
   const earliestDate = new Date(new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).setHours(0, 0, 0, 0));
 
-  alertPlace.isExists = placeList.some((item) => new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= new Date(todayDate) || new Date(item.date) >= earliestDate);
-  alertSocial.isExists = socIntList.some((item) => new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= new Date(todayDate) || new Date(item.date) >= earliestDate);
+  alertPlace.isExists = placeList.some((item) =>  new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= todayDate && new Date(new Date(item.date).setHours(0, 0, 0, 0)) >= earliestDate);
+  alertSocial.isExists = socIntList.some((item) => new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= todayDate && new Date(new Date(item.date).setHours(0, 0, 0, 0)) >= earliestDate);
 
+  console.log(
+    socIntList.some((item) => new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= new Date(todayDate) || new Date(item.date) >= earliestDate)
+    , earliestDate
+    , todayDate
+  )
 
   if (alertPlace.isExists) {
     alertPlace.message = `You have been exposed to a crowded place for the last 14 days. \n Try to avoid crowded places to minimized your exposure risk. `

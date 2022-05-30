@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { filterArrayDates } from "../../../utilities/methods";
 import BarGraph from "../../../shared/Graph/barGraph";
-import { Box, Button, Card, CardActions, CardContent, Paper } from "@mui/material";
+import { Box, Card, CardActions, CardContent } from "@mui/material";
 
 import './graph.css'
 

@@ -1,10 +1,5 @@
-import React, { useEffect } from "react";
-import { Row, Col, Container } from "react-bootstrap";
-import { getRequest } from "../../services/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { LoadPlaceAction } from "../../redux/actions/actionCreator";
-import { StoreState } from "../../redux/store/store";
-import { DataGrid } from '@mui/x-data-grid';
+import React from "react";
+import { Row, Container } from "react-bootstrap";
 
 import ButtonHeader from "./ButtonHeader/buttonHeader";
 import Graphs from "./Graph/graph";
@@ -16,12 +11,9 @@ type Props = {
 	getAllData: () => void
 }
 
-
 const Dashboard: React.FC<Props> = (props: Props) => {
-
 	const { placeList, socIntList, getAllData } = props;
 	
-
 	return (
 		<Container>
 			<Row>

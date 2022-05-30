@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-import { Row, Col } from "react-bootstrap";
 
 import CustomModal from "../../shared/CustomModal/customModal";
 import CustomButton from "../../shared/Form/Button/button";

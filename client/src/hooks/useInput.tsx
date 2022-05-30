@@ -2,18 +2,8 @@ import { useState } from 'react';
 
 export const useInput = (state: any, defaultVal: any) => {
   const [enteredValue, setEnteredValue] = useState<any>(defaultVal);
-  // const [isTouched, setIsTouched] = useState(false);
-
-  // const valueIsValid = validateValue(enteredValue);
-  // const hasError = !valueIsValid && isTouched;
 
   const valueChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if(isNumber){
-    //   setEnteredValue(parseInt(e.target.value));
-    // }
-    // else {
-    //   setEnteredValue(e.target.value);
-    // }
 
     switch (state) {
       case "string":
@@ -30,15 +20,6 @@ export const useInput = (state: any, defaultVal: any) => {
     }
     
   };
-
-  // const inputBlurHandler = () => {
-  //     setIsTouched(true);
-  // };
-
-  // const reset = () => {
-  //     setEnteredValue('');
-  //     setIsTouched(false);
-  // };
 
   return {
     enteredValue,

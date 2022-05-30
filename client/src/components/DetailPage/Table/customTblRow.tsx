@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Form, Table, Stack } from "react-bootstrap";
-import { TableHead, TableRow, TableCell, Checkbox, TableSortLabel, Box, Paper, TableBody, TableContainer } from "@mui/material";
+import { Form, Stack } from "react-bootstrap";
+import { TableRow, TableCell} from "@mui/material";
 import { formatDate, formatWord, suggestedList } from "../../../utilities/methods";
 
 import CustomButton from "../../../shared/Form/Button/button";
@@ -216,7 +216,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
               <Form.Check
                 className={"mt-3"}
                 type={"checkbox"}
-                id={"form-check"}
+                id={`form-check-${selectedItem._id}`}
                 label={isPlaceExposure ? "Is crowded?" : "Is social distancing observed?"}
                 onChange={handleChangeChckbox}
                 checked={checkBoxValue}

@@ -1,25 +1,27 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { Table } from "react-bootstrap";
-import { TableHead, TableRow, TableCell, TableSortLabel, Box, Paper, TableBody, TableContainer, TablePagination, tableCellClasses, tableHeadClasses, tableBodyClasses, tablePaginationClasses, tableClasses, paperClasses, tableContainerClasses } from "@mui/material";
+import { TableHead, TableRow, TableCell, TableSortLabel, Box, Paper, TableBody, TableContainer, TablePagination, tableCellClasses, tableHeadClasses, tableBodyClasses, tablePaginationClasses, tableClasses, tableContainerClasses } from "@mui/material";
 import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
+
 import CustomTblRow from './customTblRow'
+
 import './customTable.css'
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
     fontWeight: '600'
   }
 }));
 
-const StyledTableHead = styled(TableHead)(({ theme }) => ({
+const StyledTableHead = styled(TableHead)(() => ({
   [`&.${tableHeadClasses.root}`]: {
     border: 'none',
     backgroundColor: '#FFFCF7',
     padding: '20px'
   }
 }));
-const StyledTableBody = styled(TableBody)(({ theme }) => ({
+const StyledTableBody = styled(TableBody)(() => ({
   [`&.${tableBodyClasses.root}`]: {
     border: 'none',
     backgroundColor: '#FFFCF7',
@@ -27,7 +29,7 @@ const StyledTableBody = styled(TableBody)(({ theme }) => ({
   }
 }));
 
-const StyledTable = styled(Table)(({ theme }) => ({
+const StyledTable = styled(Table)(() => ({
   [`&.${tableClasses.root}`]: {
     border: 'none',
     backgroundColor: '#FFFCF7',
@@ -35,13 +37,13 @@ const StyledTable = styled(Table)(({ theme }) => ({
   }
 }));
 
-const StyledTablePagination = styled(TablePagination)(({ theme }) => ({
+const StyledTablePagination = styled(TablePagination)(() => ({
   [`&.${tablePaginationClasses.root}`]: {
     backgroundColor: '#FFFCF7',
   }
 }));
 
-const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+const StyledTableContainer = styled(TableContainer)(() => ({
   [`&.${tableContainerClasses.root}`]: {
     backgroundColor: '#FFFCF7',
   }
