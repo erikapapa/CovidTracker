@@ -100,18 +100,13 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
         };
       }
 
-      console.log("::::::update::::::", url, body)
-
       putRequest(url, body, selectedItem._id).then(() => {
-        console.log(body);
         handleEditView(false)
         loadData(url, dispatch, isPlaceExposure);
       });
 
     }
     else {
-      console.log("incorrect", url, value, date, hours, checkBoxValue)
-
       let errorObj: errors = {
         namePlace: "",
         date: "",
@@ -145,10 +140,11 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
         key={selectedItem._id}
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
       >
-        <TableCell component="th" scope="row">
+        <TableCell className="ps-3">
           {
             isEdit ?
               <Autocomplete
+                className="pt-3"
                 freeSolo
                 disableClearable
                 options={uniqDropdownList}
@@ -177,7 +173,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
 
 
         </TableCell>
-        <TableCell >
+        <TableCell className="ps-3">
           {
             isEdit ?
               <FormText
@@ -196,7 +192,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
           }
         </TableCell>
 
-        <TableCell>
+        <TableCell className="ps-3">
           {
             isEdit ?
               <FormText
@@ -214,7 +210,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
           }
         </TableCell>
 
-        <TableCell className={`${isEdit ? "" : selectedItem.isCrowded || selectedItem.isSocialDistancing ? 'highlight-red' : ""}`}>
+        <TableCell className={`ps-3 ${isEdit ? "" : selectedItem.isCrowded || selectedItem.isSocialDistancing ? 'highlight-red' : ""}`}>
           {
             isEdit ?
               <Form.Check
@@ -228,7 +224,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
               : formatWord(selectedChckbox)
           }
         </TableCell>
-        <TableCell >
+        <TableCell className="ps-3">
           <div className="d-flex align-items-center" style={{ fontSize: '14px' }}>
 
             {
@@ -257,7 +253,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
                 :
                 <Fragment>
                   <CustomButton
-                    btnClass=""
+                    btnClass="actions-links"
                     variant={"link"}
                     disabled={false}
                     method={() => handleEditView(true)}
@@ -269,7 +265,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
                   |
 
                   <CustomButton
-                    btnClass=""
+                    btnClass="actions-links"
                     variant={"link"}
                     disabled={false}
                     method={() => handleCloseModal(true)}
@@ -279,8 +275,6 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
                   </CustomButton>
                 </Fragment>
             }
-
-
 
           </div>
 
@@ -292,9 +286,9 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
       <CustomModal
         show={deleteModal}
         handleClose={() => handleCloseModal(false)}
-        modalHeader={"Delete"}
+        modalHeader={"Delete Record" }
       >
-        Delete this record?
+        Are you sure you want to delete this record?
 
         <Stack direction="horizontal" gap={4} className="mt-3">
           <CustomButton

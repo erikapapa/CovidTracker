@@ -1,0 +1,9 @@
+.card-graph-links {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #1976d2;
+}
+
+.card-graph-links:hover {
+  text-decoration: underline;
+}

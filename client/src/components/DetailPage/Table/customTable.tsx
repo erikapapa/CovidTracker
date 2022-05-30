@@ -1,20 +1,52 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { TableHead, TableRow, TableCell, Checkbox, TableSortLabel, Box, Paper, TableBody, TableContainer, TablePagination } from "@mui/material";
+import { TableHead, TableRow, TableCell, TableSortLabel, Box, Paper, TableBody, TableContainer, TablePagination, tableCellClasses, tableHeadClasses, tableBodyClasses, tablePaginationClasses, tableClasses, paperClasses, tableContainerClasses } from "@mui/material";
 import { visuallyHidden } from '@mui/utils';
-import { formatDate, formatWord, suggestedList } from "../../../utilities/methods";
-import AddBtnModal from "../../AddBtnModal/addBtnModal";
-import CustomButton from "../../../shared/Form/Button/button";
-import { Autocomplete, TextField } from "@mui/material";
-
-import './customTable.css'
-import { deleteRequest } from "../../../services/apiCalls";
-import { loadData } from "../../../redux/actions/actionCreator";
-import { useDispatch } from "react-redux";
-import { useInput } from "../../../hooks/useInput";
-
+import { styled } from '@mui/material/styles';
 import CustomTblRow from './customTblRow'
-import { MoneyOffCsredRounded } from "@mui/icons-material";
+import './customTable.css'
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    fontWeight: '600'
+  }
+}));
+
+const StyledTableHead = styled(TableHead)(({ theme }) => ({
+  [`&.${tableHeadClasses.root}`]: {
+    border: 'none',
+    backgroundColor: '#FFFCF7',
+    padding: '20px'
+  }
+}));
+const StyledTableBody = styled(TableBody)(({ theme }) => ({
+  [`&.${tableBodyClasses.root}`]: {
+    border: 'none',
+    backgroundColor: '#FFFCF7',
+    padding: '20px'
+  }
+}));
+
+const StyledTable = styled(Table)(({ theme }) => ({
+  [`&.${tableClasses.root}`]: {
+    border: 'none',
+    backgroundColor: '#FFFCF7',
+    padding: '20px'
+  }
+}));
+
+const StyledTablePagination = styled(TablePagination)(({ theme }) => ({
+  [`&.${tablePaginationClasses.root}`]: {
+    backgroundColor: '#FFFCF7',
+  }
+}));
+
+const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+  [`&.${tableContainerClasses.root}`]: {
+    backgroundColor: '#FFFCF7',
+  }
+}));
+
 
 type Props = {
   dataList: any[]
@@ -46,7 +78,7 @@ const SortableHeader = (props: headerProps) => {
   return (
     <Fragment>
       {headers.map((item) => (
-        <TableCell
+        <StyledTableCell
           key={item}
           sortDirection={orderBy === item ? order : false}
         >
@@ -61,7 +93,7 @@ const SortableHeader = (props: headerProps) => {
               </Box>
             ) : null}
           </TableSortLabel>
-        </TableCell>
+        </StyledTableCell>
       ))}
     </Fragment>
   );
@@ -114,19 +146,17 @@ const CustomTable: React.FC<Props> = (props: Props) => {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <TableContainer >
-          <Table aria-label="custom table">
+        <StyledTableContainer >
+          <StyledTable aria-label="custom table">
             <colgroup>
+              <col width="30%" />
               <col width="20%" />
-              <col width="20%" />
-              <col width="20%" />
+              <col width="10%" />
               <col width="20%" />
               <col width="20%" />
             </colgroup>
-            <TableHead>
+            <StyledTableHead>
               <TableRow>
-
-
                 <SortableHeader
                   order={order}
                   orderBy={orderBy}
@@ -135,11 +165,11 @@ const CustomTable: React.FC<Props> = (props: Props) => {
                   isPlaceExposure={isPlaceExposure}
                 ></SortableHeader>
 
-                <TableCell key="5">Actions</TableCell>
+                <StyledTableCell key="5">Actions</StyledTableCell>
 
               </TableRow>
-            </TableHead>
-            <TableBody>
+            </StyledTableHead>
+            <StyledTableBody>
 
               {
                 dataList.slice().sort(getComparator(order, orderBy))
@@ -157,19 +187,10 @@ const CustomTable: React.FC<Props> = (props: Props) => {
                   })
 
               }
-
-              {/* {dataList.map((row) => (
-            <CustomTblRow
-              key={row._id}
-              selectedItem={row}
-              isPlaceExposure={isPlaceExposure}
-              dataList={dataList}
-            />
-          ))} */}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
+            </StyledTableBody>
+          </StyledTable>
+        </StyledTableContainer>
+        <StyledTablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={dataList.length}

@@ -16,7 +16,8 @@ function App() {
   const placeList_store = useSelector<StoreState>((state) => state.placeList) as any[];
   const socIntList_store = useSelector<StoreState>((state) => state.socInteractionList) as any[];
 
-  useEffect(() => {
+  const getAllData = () => {
+    console.log("hehe")
     getRequest("social-interactions").then((result) => {
       dispatch(LoadSocInteractionAction(result))
     })
@@ -24,12 +25,12 @@ function App() {
     getRequest("visited-places").then((result) => {
       dispatch(LoadPlaceAction(result))
     });
+  }
 
+  useEffect(() => {
+    getAllData();
   }, [])
 
-  // console.log('store place - ', placeList_store)
-  // console.log('----------- ')
-  // console.log('store soc - ', socIntList_store)
 
 
   return (
@@ -37,7 +38,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Dashboard placeList={placeList_store} socIntList={socIntList_store} />} />
+            <Route index element={<Dashboard placeList={placeList_store} socIntList={socIntList_store} getAllData={getAllData} />} />
             <Route path="social-interactions" element={<DetailPage isPlaceExposure={false} list={socIntList_store} />} />
             <Route path="visited-places" element={<DetailPage isPlaceExposure={true} list={placeList_store} />} />
           </Route>

@@ -7,51 +7,48 @@ import AddBtnModal from "../../AddBtnModal/addBtnModal";
 type Props = {
 	placeList: any[]
 	socIntList: any[]
+	getAllData: () => void
 }
 
 const ButtonHeader: React.FC<Props> = (props: Props) => {
-	const { placeList, socIntList } = props;
+	const { placeList, socIntList, getAllData } = props;
 
 	return (
 		<Fragment>
 			<Row className="text-center my-3">
-				<Col md={3} lg={3}></Col>
 
-				<Col>
+				<Col md={{ offset: 3 }}>
 					<Row>
-						<Col>
+						<Col >
 
 							<AddBtnModal
 								name="Add Social Interaction"
 								isPlaceExposure={false}
-								variant="primary"
-								btnClass="w-100"
+								variant=""
+								btnClass="w-100 btn-shadow-blue"
 								dataList={socIntList}
 							/>
-
 						</Col>
 
 						<Col>
-
 							<AddBtnModal
 								name="Add Place Exposure"
 								isPlaceExposure={true}
-								variant="primary"
-								btnClass="w-100"
+								variant=""
+								btnClass="w-100 btn-shadow-blue"
 								dataList={placeList}
 							/>
-
 						</Col>
 
 						<Col>
 							<CustomButton
-								btnClass="w-100"
-								variant="danger"
+								btnClass="w-100 btn-pale-cerulean"
+								variant=""
 								type="button"
 								disabled={false}
-								method={() => console.log("reset")}
+								method={() => getAllData()}
 							>
-								Reset Data
+								Refresh Data
 							</CustomButton>
 						</Col>
 

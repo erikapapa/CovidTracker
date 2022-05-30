@@ -8,18 +8,19 @@ import { DataGrid } from '@mui/x-data-grid';
 
 import ButtonHeader from "./ButtonHeader/buttonHeader";
 import Graphs from "./Graph/graph";
-import AlertNotification from "../Notification/AlertNotification"
 import Alerts from "../Notification";
 
 type Props = {
 	placeList: any[]
 	socIntList: any[]
+	getAllData: () => void
 }
 
 
 const Dashboard: React.FC<Props> = (props: Props) => {
 
-	const { placeList, socIntList } = props;
+	const { placeList, socIntList, getAllData } = props;
+	
 
 	return (
 		<Container>
@@ -32,6 +33,7 @@ const Dashboard: React.FC<Props> = (props: Props) => {
 			<ButtonHeader
 				placeList={placeList}
 				socIntList={socIntList}
+				getAllData={getAllData}
 			/>
 
 			<Alerts

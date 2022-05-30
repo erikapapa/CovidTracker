@@ -48,7 +48,7 @@ const Alerts: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <Stack sx={{ width: '100%' }} spacing={2}>
+    <Stack sx={{ width: '100%' }} spacing={2} className="my-4">
       <AlertNotification
         severity={alertPlace.severity}
         message={alertPlace.message}

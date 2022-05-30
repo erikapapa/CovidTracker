@@ -21,8 +21,8 @@ const DetailPage: React.FC<Props> = (props: Props) => {
   const [newList, setNewList] = useState<any[]>(list);
 
   const headers = isPlaceExposure ? ["Name", "Date", "Hours", "Is Crowded?"] : ["Name", "Date", "Hours", "Is Practicing Social Distancing?"];
-  const todayDate = new Date(new Date().setHours(0,0,0,0));
-  const earliestDate = new Date(new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).setHours(0,0,0,0));
+  const todayDate = new Date(new Date().setHours(0, 0, 0, 0));
+  const earliestDate = new Date(new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).setHours(0, 0, 0, 0));
 
   let navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const DetailPage: React.FC<Props> = (props: Props) => {
     if (isChecked) {
       setNewList(
         list.filter((item) => {
-          if (new Date(new Date(item.date).setHours(0,0,0,0)) <= todayDate && new Date(new Date(item.date).setHours(0,0,0,0)) >= earliestDate) {
+          if (new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= todayDate && new Date(new Date(item.date).setHours(0, 0, 0, 0)) >= earliestDate) {
             return item
           }
         })
@@ -55,8 +55,8 @@ const DetailPage: React.FC<Props> = (props: Props) => {
     <div className="mx-5 my-3">
 
       <CustomButton
-        btnClass=""
-        variant="outline-primary"
+        btnClass="btn-shadow-blue-outline"
+        variant=""
         disabled={false}
         type="button"
         method={() => {
@@ -64,7 +64,7 @@ const DetailPage: React.FC<Props> = (props: Props) => {
         }}
 
       >
-        Back to homepage
+        &#x2190; Back to homepage
       </CustomButton>
       <h1 className="text-center">
         {
@@ -73,7 +73,15 @@ const DetailPage: React.FC<Props> = (props: Props) => {
       </h1>
 
       <div className="mx-5 mt-3 px-5">
-        <div className="my-4 d-flex justify-content-end">
+        <div className="my-4 d-flex justify-content-between">
+          <AddBtnModal
+            name={isPlaceExposure ? "Add Place Exposure" : "Add Social Interaction"}
+            isPlaceExposure={isPlaceExposure}
+            variant=""
+            btnClass="btn-shadow-blue"
+            dataList={list}
+          />
+
           <Form.Check
             className={""}
             type={"checkbox"}
@@ -90,15 +98,7 @@ const DetailPage: React.FC<Props> = (props: Props) => {
           isPlaceExposure={isPlaceExposure}
         />
 
-        <div className="mt-4">
-          <AddBtnModal
-            name={isPlaceExposure ? "Add Place Exposure" : "Add Social Interaction"}
-            isPlaceExposure={isPlaceExposure}
-            variant="primary"
-            btnClass=""
-            dataList={list}
-          />
-        </div>
+       
       </div>
 
 

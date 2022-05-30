@@ -1,0 +1,32 @@
+.btn-shadow-blue {
+  background-color: #7392B7;
+  border-color: #7392B7;
+  color: white;
+}
+
+.btn-superiority-blue {
+  background-color: #759EB8;
+  border-color: #759EB8;
+  color: white;
+}
+
+.btn-pale-cerulean {
+  background-color: #9DBAD1;
+  border-color: #9DBAD1;
+  color: white;
+}
+
+.btn-shadow-blue-outline {
+  background-color: transparent;
+  border-color: #738290;
+  color: #738290;
+}
+
+.actions-links {
+  text-decoration: none;
+  color: #1976d2;
+}
+
+.actions-links:hover {
+  text-decoration: underline;
+}

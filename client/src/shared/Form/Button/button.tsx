@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from 'react-bootstrap';
 
+import './button.css'
+
 type Props = {
   btnClass: string
   variant: string

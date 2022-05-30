@@ -2,10 +2,11 @@ import React, { Fragment } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { filterArray, filterArrayDates } from "../../../utilities/methods";
+import { filterArrayDates } from "../../../utilities/methods";
 import BarGraph from "../../../shared/Graph/barGraph";
-import BarGraphh  from "../../../shared/Graph/barGraphh";
-import { CropLandscapeOutlined } from "@mui/icons-material";
+import { Box, Button, Card, CardActions, CardContent, Paper } from "@mui/material";
+
+import './graph.css'
 
 type Props = {
   placeList: any[]
@@ -17,90 +18,53 @@ const Graphs: React.FC<Props> = (props: Props) => {
 
   const { placeList, socIntList } = props;
 
-  const dates = [];
-
   const filteredPlaceList = filterArrayDates(placeList, true);
-  // const filteredPlaceList = filterArray(placeList);
-  
-  // const filteredSocIntList = filterArray(socIntList);
   const filteredSocIntList = filterArrayDates(socIntList, false);
 
-  // this will be the label
-  for (let index = 0; index < 7; index++) {
-    dates.push(new Date(Date.now() - index * 24 * 60 * 60 * 1000))
-  }
-
-  // const sevenDaysAgo: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-  // console.log(dates, sevenDaysAgo)
-
-  console.log("asd",filteredSocIntList )
-
-
   return (
-    // <Row className="w-100 mt-5">
-    //   <Col style={{ height: '70vh' }}>
-    //     <span className="me-2">Recent Visited Places</span>
-    //     <Link to={"/visited-places"}>View all</Link>
-    //     {/* <BarGraph
-    //       color={"#3259ad"}
-    //       data={filteredPlaceList}
-    //     /> */}
-
-    //     <BarGraphh data={filteredPlaceList2} />
-
-    //   </Col>
-
-    //   <Col style={{ height: '70vh' }}>
-    //     <span className="me-2">Recent Social Interactions</span>
-    //     <Link to={"/social-interactions"}>View all</Link>
-    //     {/* <BarGraph
-    //       color={"#8884d8"}
-    //       data={filteredSocIntList}
-    //     /> */}
-    //   </Col>
-
-    //   {/* {
-    //     filteredPlaceList2 !== []  ?
-    //       <BarGraphh data={filteredPlaceList2} /> : null
-    //   } */}
-
-
-
-    // </Row>
-
-    // <Fragment>
-    //   <Row className="w-100 mt-5">
-    //     <Col>
-    //       <span className="me-2">Recent Visited Places</span>
-    //       <Link to={"/visited-places"}>View all</Link>
-    //       <BarGraphh data={filteredPlaceList} />
-    //     </Col>
-    //   </Row>
-    //   <Row className="w-100 mt-5">
-    //     <Col>
-    //       <span className="me-2">Recent Social Interactions</span>
-    //       <Link to={"/social-interactions"}>View all</Link>
-    //       <BarGraphh data={filteredSocIntList} />
-    //     </Col>
-    //   </Row>
-    // </Fragment>
 
     <Fragment>
       <Row className="w-100 mt-5">
         <Col>
-          <span className="me-2">Recent Visited Places</span>
-          <Link to={"/visited-places"}>View all</Link>
-          <BarGraphh data={filteredPlaceList} />
+
+
+          <Card variant="outlined" className={`h-100 ${filteredPlaceList.length === 0 ? "pt-5" : ""}`}>
+            <CardContent className={`${filteredPlaceList.length === 0 ? "d-flex text-center justify-content-center align-items-center my-5 py-5" : ""}`}>
+              {
+                filteredPlaceList.length === 0 ?
+                  <Box className="d-flex text-center h-100 justify-content-center align-items-center">
+                    <h4>No data from 7 days to display</h4>
+                  </Box>
+                  :
+                  <BarGraph data={filteredPlaceList} />
+              }
+            </CardContent>
+            <CardActions>
+              <Link to={"/visited-places"} className={`card-graph-links ms-3 mb-2 ${filteredPlaceList.length === 0 ? "mt-5" : ""}`}>View all recent visited places</Link>
+            </CardActions>
+          </Card>
+
         </Col>
 
         <Col>
-          <span className="me-2">Recent Social Interactions</span>
-          <Link to={"/social-interactions"}>View all</Link>
-          <BarGraphh data={filteredSocIntList} />
+
+          <Card variant="outlined" className={`h-100 ${filteredSocIntList.length === 0 ? "pt-5" : ""}`}>
+            <CardContent className={`${filteredSocIntList.length === 0 ? "d-flex text-center justify-content-center align-items-center my-5 py-5" : ""}`}>
+              {
+                filteredSocIntList.length === 0 ?
+                  <h4>No data from 7 days to display</h4>
+                  :
+                  <BarGraph data={filteredSocIntList} />
+              }
+            </CardContent>
+            <CardActions>
+              <Link to={"/social-interactions"} className={`card-graph-links ms-3 mb-2 ${filteredSocIntList.length === 0 ? "mt-5" : ""}`}>View all recent Social Interactions</Link>
+            </CardActions>
+          </Card>
         </Col>
 
       </Row>
-     
+
     </Fragment>
   );
 };
