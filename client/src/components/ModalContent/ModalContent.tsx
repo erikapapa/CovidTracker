@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Form, Stack } from "react-bootstrap";
 import { Autocomplete, TextField } from "@mui/material";
 
-import { postRequest, putRequest } from "../../services/apiCalls";
+import { postRequest } from "../../services/apiCalls";
 
 import { loadData } from "../../redux/actions/actionCreator";
 import { suggestedList } from "../../utilities/methods";

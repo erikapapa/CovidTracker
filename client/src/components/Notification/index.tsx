@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Stack from '@mui/material/Stack';
 import AlertNotification from './AlertNotification';
 
@@ -27,12 +27,6 @@ const Alerts: React.FC<Props> = (props: Props) => {
 
   alertPlace.isExists = placeList.some((item) =>  new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= todayDate && new Date(new Date(item.date).setHours(0, 0, 0, 0)) >= earliestDate);
   alertSocial.isExists = socIntList.some((item) => new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= todayDate && new Date(new Date(item.date).setHours(0, 0, 0, 0)) >= earliestDate);
-
-  console.log(
-    socIntList.some((item) => new Date(new Date(item.date).setHours(0, 0, 0, 0)) <= new Date(todayDate) || new Date(item.date) >= earliestDate)
-    , earliestDate
-    , todayDate
-  )
 
   if (alertPlace.isExists) {
     alertPlace.message = `You have been exposed to a crowded place for the last 14 days. \n Try to avoid crowded places to minimized your exposure risk. `

@@ -120,7 +120,6 @@ export const formatWord = (word: boolean) => {
 
 export const suggestedList = (isPlaceExposure: boolean, dataList: any) => {
   let dropdownList = [];
-  let uniqDropdownList = [];
 
   if (isPlaceExposure && dataList !== []) {
 		dropdownList = dataList.map((item: any) => item.place)
@@ -129,5 +128,5 @@ export const suggestedList = (isPlaceExposure: boolean, dataList: any) => {
 		dropdownList = dataList.map((item: any) => item.name)
 	}
 
-	return uniqDropdownList = [...new Set(dropdownList)];
+	return [...new Set(dropdownList)];
 }

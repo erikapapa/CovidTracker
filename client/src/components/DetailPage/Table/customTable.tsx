@@ -71,7 +71,7 @@ type headerProps = {
 }
 
 const SortableHeader = (props: headerProps) => {
-  const { order, orderBy, onRequestSort, headers, isPlaceExposure } = props;
+  const { order, orderBy, onRequestSort, headers } = props;
 
   const createSortHandler = (property: any) => (event: any) => {
     onRequestSort(event, property);

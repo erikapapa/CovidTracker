@@ -132,7 +132,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     setUniqDropdownList(suggestedList(isPlaceExposure, dataList))
-  }, [suggestedList, isPlaceExposure, dataList])
+  }, [ isPlaceExposure, dataList])
 
   return (
     <Fragment>
