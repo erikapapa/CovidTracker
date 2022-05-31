@@ -15,7 +15,7 @@ const Dashboard: React.FC<Props> = (props: Props) => {
 	const { placeList, socIntList, getAllData } = props;
 	
 	return (
-		<Container>
+		<Container className="mt-3">
 			<Row>
 				<h1 className="text-center my-3">
 					COVID Exposure Tracker Tool

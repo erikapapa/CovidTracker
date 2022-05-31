@@ -5,7 +5,6 @@ import CustomButton from "../../shared/Form/Button/button";
 import { useNavigate } from "react-router-dom";
 import AddBtnModal from "../AddBtnModal/addBtnModal";
 
-
 type Props = {
   list: any[]
   isPlaceExposure: boolean
@@ -16,7 +15,62 @@ const DetailPage: React.FC<Props> = (props: Props) => {
   const { list, isPlaceExposure } = props;
   const [newList, setNewList] = useState<any[]>(list);
 
-  const headers = isPlaceExposure ? ["Name", "Date", "Hours", "Is Crowded?"] : ["Name", "Date", "Hours", "Is Practicing Social Distancing?"];
+
+  const headers =
+    isPlaceExposure ?
+      [
+        {
+          id: 'place',
+          numeric: false,
+          disablePadding: true,
+          label: 'Place',
+        },
+        {
+          id: 'date',
+          numeric: true,
+          disablePadding: false,
+          label: 'Date',
+        },
+        {
+          id: 'hours',
+          numeric: true,
+          disablePadding: false,
+          label: 'Hours',
+        },
+        {
+          id: 'isCrowded',
+          numeric: false,
+          disablePadding: false,
+          label: 'Is Crowded?',
+        }
+      ] :
+      [
+        {
+          id: 'name',
+          numeric: false,
+          disablePadding: true,
+          label: 'Name',
+        },
+        {
+          id: 'date',
+          numeric: true,
+          disablePadding: false,
+          label: 'Date',
+        },
+        {
+          id: 'hours',
+          numeric: true,
+          disablePadding: false,
+          label: 'Hours',
+        },
+        {
+          id: 'isSocialDistancing',
+          numeric: false,
+          disablePadding: false,
+          label: 'Is Practicing Social Distancing?',
+        }
+      ];
+
   const todayDate = new Date(new Date().setHours(0, 0, 0, 0));
   const earliestDate = new Date(new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).setHours(0, 0, 0, 0));
 
@@ -92,7 +146,7 @@ const DetailPage: React.FC<Props> = (props: Props) => {
           isPlaceExposure={isPlaceExposure}
         />
 
-       
+
       </div>
 
 

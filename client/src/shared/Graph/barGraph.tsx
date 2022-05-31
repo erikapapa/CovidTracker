@@ -9,8 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import {dateHeaders} from '../../utilities/methods';
-
+import { useDate } from '../../hooks/useDate'
 
 ChartJS.register(
   CategoryScale,
@@ -36,9 +35,13 @@ type Props = {
   data: any
 }
 
-const labels = dateHeaders();
-
 const BarGraph: React.FC<Props> = (props: Props) => {
+
+  const {
+		dateHeaders
+	} = useDate();
+
+  const labels = dateHeaders();
 
   const data = {
     labels,

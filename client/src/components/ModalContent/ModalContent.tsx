@@ -6,11 +6,11 @@ import { Autocomplete, TextField } from "@mui/material";
 import { postRequest } from "../../services/apiCalls";
 
 import { loadData } from "../../redux/actions/actionCreator";
-import { suggestedList } from "../../utilities/methods";
-import { useInput } from '../../hooks/useInput'
+import { useSetField } from '../../hooks/useSetField'
 
 import FormText from "../../shared/Form/Input/formText";
 import CustomButton from "../../shared/Form/Button/button";
+import { useFormatStrings } from "../../hooks/useFormatStrings";
 
 type Props = {
 	openModal: (bool: boolean) => void
@@ -33,29 +33,31 @@ const ModalContent: React.FC<Props> = (props) => {
 	const {
 		enteredValue: value,
 		valueChangeHandler: handleChangeValue
-	} = useInput("string", "");
+	} = useSetField("string", "");
 
 
 	const {
 		enteredValue: date,
 		valueChangeHandler: handleChangeDate
-	} = useInput("string", "");
+	} = useSetField("string", "");
 
 	const {
 		enteredValue: hours,
 		valueChangeHandler: handleChangeHours
-	} = useInput("num", 0);
+	} = useSetField("num", 0);
 
 	const {
 		enteredValue: checkBoxValue,
 		valueChangeHandler: handleChangeChckbox
-	} = useInput("checkbox", false);
+	} = useSetField("checkbox", false);
 
 	const [errors, setErrors] = useState<errors>({
 		namePlace: "",
 		date: "",
 		hours: ""
 	});
+
+	const { suggestedList } = useFormatStrings();
 
 	const saveChanges = () => {
 
@@ -109,7 +111,7 @@ const ModalContent: React.FC<Props> = (props) => {
 
 	useEffect(() => {
 		setUniqDropdownList(suggestedList(isPlaceExposure, dataList))
-	}, [suggestedList, isPlaceExposure, dataList])
+	}, [isPlaceExposure, dataList])
 
 
 	return (

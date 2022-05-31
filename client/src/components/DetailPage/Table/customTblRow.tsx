@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Form, Stack } from "react-bootstrap";
-import { TableRow, TableCell} from "@mui/material";
-import { formatDate, formatWord, suggestedList } from "../../../utilities/methods";
+import { TableRow, TableCell } from "@mui/material";
 
 import CustomButton from "../../../shared/Form/Button/button";
 import { Autocomplete, TextField } from "@mui/material";
@@ -10,9 +9,11 @@ import './customTable.css'
 import { deleteRequest, putRequest } from "../../../services/apiCalls";
 import { loadData } from "../../../redux/actions/actionCreator";
 import { useDispatch } from "react-redux";
-import { useInput } from "../../../hooks/useInput";
+import { useSetField } from "../../../hooks/useSetField";
+import { useDate } from "../../../hooks/useDate";
 import FormText from "../../../shared/Form/Input/formText";
 import CustomModal from "../../../shared/CustomModal/customModal";
+import { useFormatStrings } from "../../../hooks/useFormatStrings";
 
 type Props = {
   selectedItem: any
@@ -47,24 +48,26 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
   const {
     enteredValue: value,
     valueChangeHandler: handleChangeValue
-  } = useInput("string", selectedValue);
+  } = useSetField("string", selectedValue);
 
 
   const {
     enteredValue: date,
     valueChangeHandler: handleChangeDate
-  } = useInput("string", new Date(selectedItem.date).toISOString().split('T')[0]);
+  } = useSetField("string", new Date(selectedItem.date).toISOString().split('T')[0]);
 
   const {
     enteredValue: hours,
     valueChangeHandler: handleChangeHours
-  } = useInput("num", selectedItem.hours);
+  } = useSetField("num", selectedItem.hours);
 
   const {
     enteredValue: checkBoxValue,
     valueChangeHandler: handleChangeChckbox
-  } = useInput("checkbox", selectedChckbox);
+  } = useSetField("checkbox", selectedChckbox);
 
+  const { formatDate } = useDate();
+  const { formatWord, suggestedList } = useFormatStrings();
 
   const handleDelete = (id: string) => {
     const url = isPlaceExposure ? `visited-places` : `social-interactions`;
@@ -132,7 +135,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     setUniqDropdownList(suggestedList(isPlaceExposure, dataList))
-  }, [ isPlaceExposure, dataList])
+  }, [isPlaceExposure, dataList])
 
   return (
     <Fragment>
@@ -286,7 +289,7 @@ const CustomTblRow: React.FC<Props> = (props: Props) => {
       <CustomModal
         show={deleteModal}
         handleClose={() => handleCloseModal(false)}
-        modalHeader={"Delete Record" }
+        modalHeader={"Delete Record"}
       >
         Are you sure you want to delete this record?
 

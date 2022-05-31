@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useInput = (state: any, defaultVal: any) => {
+export const useSetField = (state: any, defaultVal: any) => {
   const [enteredValue, setEnteredValue] = useState<any>(defaultVal);
 
   const valueChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

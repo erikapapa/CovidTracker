@@ -2,11 +2,11 @@ import React, { Fragment } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { filterArrayDates } from "../../../utilities/methods";
 import BarGraph from "../../../shared/Graph/barGraph";
 import { Box, Card, CardActions, CardContent } from "@mui/material";
 
 import './graph.css'
+import { useCustomGraphData } from "../../../hooks/useCustomGraphData";
 
 type Props = {
   placeList: any[]
@@ -17,6 +17,8 @@ type Props = {
 const Graphs: React.FC<Props> = (props: Props) => {
 
   const { placeList, socIntList } = props;
+
+  const {filterArrayDates} = useCustomGraphData();
 
   const filteredPlaceList = filterArrayDates(placeList, true);
   const filteredSocIntList = filterArrayDates(socIntList, false);
